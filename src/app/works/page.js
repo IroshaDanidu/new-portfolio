@@ -1,5 +1,8 @@
 import React from 'react'
-import Portfolio from '../../components/sections/portfolio'
+import ChatLayout from '@/components/chat/ChatLayout'
+import Conversation from '@/components/chat/Conversation'
+import ProjectsSection from '@/components/chat/sections/ProjectsSection'
+import CallToActionSection from '@/components/chat/sections/CallToActionSection'
 
 export const metadata = {
   title: "Portfolio & Projects - Irosha Rajapaksha | Full Stack Development Work",
@@ -17,11 +20,14 @@ export const metadata = {
 };
 
 const Works = () => {
-    return (
-        <>
-            <Portfolio className={"innerpage-single-area"} />
-        </>
-    )
+  return (
+    <ChatLayout title="Works">
+      <Conversation>
+        <ProjectsSection />
+        <CallToActionSection />
+      </Conversation>
+    </ChatLayout>
+  )
 }
 
 export default Works

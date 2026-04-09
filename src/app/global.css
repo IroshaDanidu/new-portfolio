@@ -1,10 +1,118 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* bootstrap */
+/* Tailwind layers */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Bootstrap (kept for any legacy components still in the tree) */
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-/* css */
+/* Legacy css (kept so any unchanged page still renders) */
 @import "@/assets/css/spacing.css";
 @import "@/assets/css/style.css";
 @import "@/assets/css/responsive.css";
+
+/* ===== Chat-style global overrides ===== */
+@layer base {
+  html,
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    background-color: #ffffff;
+    color: #0d0d0d;
+    font-family: "Inter", "Söhne", ui-sans-serif, system-ui, -apple-system,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Smooth scrolling for in-page anchors */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Override legacy bootstrap/style.css rules that force Poppins + gray on every <a> */
+  a {
+    font-family: inherit !important;
+    color: inherit !important;
+    transition: none;
+  }
+  a:hover,
+  a:focus,
+  a:visited {
+    color: inherit !important;
+  }
+
+  /* Legacy style.css forces Poppins + heading color + fixed font-size on h1-h6.
+     Reset so Tailwind utilities can win. */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: inherit !important;
+    color: inherit !important;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+  }
+
+  /* Same for form controls */
+  input, select, textarea, button {
+    font-family: inherit !important;
+    color: inherit;
+  }
+}
+
+@layer components {
+  /* A reusable "chat bubble" base */
+  .chat-bubble {
+    @apply rounded-2xl border border-chat-border bg-white px-5 py-4 shadow-soft transition-shadow hover:shadow-card;
+  }
+
+  .chat-bubble-assistant {
+    @apply chat-bubble bg-chat-assistant;
+  }
+
+  .chat-bubble-user {
+    @apply chat-bubble bg-white;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-chat-border bg-white px-3 py-1 text-xs font-medium text-chat-subtle transition-colors hover:border-chat-ink/30 hover:text-chat-ink;
+  }
+
+  .chip-active {
+    @apply border-chat-ink bg-chat-ink text-white hover:text-white;
+  }
+
+  .nav-item {
+    @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-chat-ink/80 transition-colors hover:bg-chat-sidebarHover hover:text-chat-ink;
+  }
+
+  .nav-item-active {
+    @apply bg-chat-sidebarHover text-chat-ink;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl bg-chat-ink px-4 py-2.5 text-sm font-semibold text-white shadow-soft transition-all hover:bg-black hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl border border-chat-border bg-white px-4 py-2.5 text-sm font-semibold text-chat-ink shadow-soft transition-all hover:bg-chat-panel hover:-translate-y-0.5;
+  }
+}
+
+/* Custom scrollbar to match the minimal look */
+.scrollbar-minimal::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.scrollbar-minimal::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-minimal::-webkit-scrollbar-thumb {
+  background-color: #d4d4d8;
+  border-radius: 9999px;
+}
+.scrollbar-minimal::-webkit-scrollbar-thumb:hover {
+  background-color: #a1a1aa;
+}

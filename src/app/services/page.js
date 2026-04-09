@@ -1,6 +1,9 @@
 import React from 'react'
-// import Pricing from '@/components/sections/pricing'
-import ServiceGrid from '@/components/sections/serviceGrid'
+import ChatLayout from '@/components/chat/ChatLayout'
+import Conversation from '@/components/chat/Conversation'
+import ServicesSection from '@/components/chat/sections/ServicesSection'
+import TechStackSection from '@/components/chat/sections/TechStackSection'
+import CallToActionSection from '@/components/chat/sections/CallToActionSection'
 
 export const metadata = {
   title: "Web Development Services - Irosha Rajapaksha | Full Stack & AI Solutions",
@@ -18,12 +21,15 @@ export const metadata = {
 };
 
 const Service = () => {
-    return (
-        <>
-            <ServiceGrid />
-            {/* <Pricing /> */}
-        </>
-    )
+  return (
+    <ChatLayout title="Services">
+      <Conversation>
+        <ServicesSection />
+        <TechStackSection />
+        <CallToActionSection />
+      </Conversation>
+    </ChatLayout>
+  )
 }
 
 export default Service

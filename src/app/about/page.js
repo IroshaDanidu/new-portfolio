@@ -1,7 +1,9 @@
 import React from 'react'
-import Summery from '@/components/sections/summery'
-// import Resume from '@/components/sections/resume'
-// import Testimonials from '@/components/sections/testimonials'
+import ChatLayout from '@/components/chat/ChatLayout'
+import Conversation from '@/components/chat/Conversation'
+import AboutSection from '@/components/chat/sections/AboutSection'
+import ResumeSection from '@/components/chat/sections/ResumeSection'
+import CallToActionSection from '@/components/chat/sections/CallToActionSection'
 
 export const metadata = {
   title: "About Irosha Rajapaksha - Full Stack Developer & AI Engineer",
@@ -19,14 +21,15 @@ export const metadata = {
 };
 
 const About = () => {
-    return (
-        <>
-            <Summery />
-            {/* <Resume /> */}
-            {/* <Testimonials /> */}
-           
-        </>
-    )
+  return (
+    <ChatLayout title="About Irosha">
+      <Conversation>
+        <AboutSection />
+        <ResumeSection />
+        <CallToActionSection />
+      </Conversation>
+    </ChatLayout>
+  )
 }
 
 export default About
